@@ -65,7 +65,14 @@
 		    		<div class="form-group">
 		    			<input type="button" class="btn btn-warning" value="agregar" onclick="agregar_a_list()">
 		    		</div>
+		    		<div class="form-group">
+		    			<input type="button" class="btn btn-success" value="importar excel" data-toggle="modal" data-target="#exampleModal">
+		    		</div>
 		    	</div>
+		    	<!--Incluye  modal para importar excel-->
+		    	@include('trabajos.ordenes.modal_importar_excel')
+
+
 
 				<form id="crearOrden" method="POST" action="{{ route('ordenes.almacenar') }}">
 		    		{{ csrf_field() }}

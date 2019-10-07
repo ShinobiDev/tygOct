@@ -12,7 +12,7 @@ class SedesController extends Controller
 	{
 		$cliente = auth()->user()->cliente_id;
 
-		//dd($user);
+		//dd(auth()->user());
 		$sedes = Sede::select('id','nombre','pais','estado','ciudad','telefono','direccion','contactoSede','cliente_id')
 		->where('cliente_id','=',$cliente)
 		->get();
