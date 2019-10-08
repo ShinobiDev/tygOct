@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Trabajos;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\OrdensImport;
+use App\Imports\ItemOrdensImport;
 use App\Http\Controllers\Controller;
 use App\Events\NotificationEvent;
 use App\Events\OrdenCreada;
@@ -1205,7 +1205,7 @@ class OrdenesController extends Controller
         
         rename($filename,'plantilla/leidos/'.$newname);
 
-        Excel::import(new OrdensImport, 'plantilla/leidos/'.$newname);
+        Excel::import(new ItemOrdensImport, 'plantilla/leidos/'.$newname);
         
         return  response()->json(['respuesta'=>true,'mensaje'=>'Se han registrado tus ordenes']);
 
