@@ -112,6 +112,11 @@ Route::group(['prefix'=>'trabajos','namespace'=>'Trabajos','middleware'=>'auth']
 
     Route::get('facturas/detalleFactura/{orden_id}','FacturasController@detalleFactura')->name('facturas.detalleFactura');
     Route::get('facturas/misFacturas','FacturasController@misFacturas')->name('facturas.misFacturas');
+    
+    //rutas para importar excel
+    Route::post('importar/ordenes', 'OrdenesController@importarExcel')->name('importar.excel');
+
+
 
 });
 

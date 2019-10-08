@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Trabajos;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ItemOrdensImport;
 use App\Http\Controllers\Controller;
 use App\Events\NotificationEvent;
 use App\Events\OrdenCreada;
@@ -1191,6 +1193,24 @@ class OrdenesController extends Controller
             //dd('La consulta trae valores');
            return view('trabajos.ordenes.asignadas_a_mi',compact('ordenAsignadas'));
         }
+
+    }
+    /*
+    Funcion para recibir archivo excel e importar datos a la base de datos.
+    */
+    public function importarExcel(Request $request){
+        $newname="ordenes".".".explode(".",$_FILES['file']['name'])[1];
+
+        $filename = $request->file('file')->move('plantilla/leidos/');
+        
+        rename($filename,'plantilla/leidos/'.$newname);
+
+        Excel::import(new ItemOrdensImport, 'plantilla/leidos/'.$newname);
+        
+        return  response()->json(['respuesta'=>true,'mensaje'=>'Se han registrado tus ordenes']);
+
+
+
 
     }
 }
